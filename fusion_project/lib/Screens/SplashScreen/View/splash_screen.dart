@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const LoginScreen()));
+          MaterialPageRoute(builder: (_) => const InitialScreen()));
     });
   }
 
@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: FAppTheme.defaultFusionColor,
         body: Container(
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -40,21 +41,24 @@ class _SplashScreenState extends State<SplashScreen> {
                   Center(
                     child: Image(
                         image: AssetImage('assets/images/splash_logo.png'),
-                        height: 50),
+                        height: 150),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 70,
                   ),
                   Text(
                     'Welcome to App',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                       'Here\'s a good place for a brief overview\n of the app or its key features.',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                       textAlign: TextAlign.center),
                 ])));
   }
