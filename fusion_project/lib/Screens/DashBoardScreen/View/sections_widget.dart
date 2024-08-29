@@ -1,7 +1,9 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 Card numberCard() {
-  return const Card(
+  return Card(
+    color: Colors.white,
     child: Column(
       children: [
         Text("CR Number"),
@@ -20,74 +22,79 @@ Card numberCard() {
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
             ),
           ]),
-          ElevatedButton(
-              onPressed: null,
-              child: Row(children: [Text("Share"), Icon(Icons.share)]))
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ElevatedButton(
+                onPressed: null,
+                child: Row(children: [Text("Share"), Icon(Icons.share)])),
+          )
         ])
       ],
     ),
   );
 }
 
-Card numberCard2() {
-  return const Card(
-    child: Column(
-      children: [
-        Text("LW ANDREW"),
-        SizedBox(
-          height: 10,
-        ),
-        Text("535243"),
-        SizedBox(
-          height: 10,
-        ),
-        Row(children: [
-          Column(children: [
-            Text("Expiring on:"),
-            Text(
-              "09/09/2022",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
-            ),
-          ]),
-          ElevatedButton(
-              onPressed: null,
-              child: Row(children: [Text("Share"), Icon(Icons.share)]))
-        ])
-      ],
-    ),
+Widget iconWithStatus(IconData icon, String status) {
+  return Row(
+    children: [
+      Icon(icon, color: Colors.green, size: 15),
+      SizedBox(width: 10),
+      Text(
+        'ُ$status',
+        style: TextStyle(fontSize: 10, color: Colors.black),
+      ),
+    ],
   );
 }
 
-Card numberCard3() {
-  // bgd ya3ne yasta ? ? ? ? xDDD ahahhahahahah
-// kont bfkr a3ml el ui bsor3a bs 7aset eno laaaaaaaaaaaaaaaaaaa msh ader ..... alah y5rbetk b2et mo3dyyyyy ... ya 3m bel shefaa
-// enta b2et moayad gdan e3ne bas el mo4kla en ana 5fet 7arfyan XDDDDDDDDDDD
-// ana 5fet asln
-// ya 3m gn ya gn
-  return const Card(
-    child: Column(
-      children: [
-        Text("LW ANDREW"),
-        SizedBox(
-          height: 10,
-        ),
-        Text("535243"),
-        SizedBox(
-          height: 10,
-        ),
-        Row(children: [
-          Column(children: [
-            Text("Expiring on:"),
-            Text(
-              "09/09/2022",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
-            ),
-          ]),
-          ElevatedButton(
-              onPressed: null,
-              child: Row(children: [Text("Share"), Icon(Icons.share)]))
-        ])
-      ],
+Widget licenceCard() {
+  return Card(
+    color: Colors.white,
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Coroporate License',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Column(
+                children: [
+                  iconWithStatus(Icons.check_circle_outline, 'Expiring soon'),
+                  iconWithStatus(Icons.check_circle_outline, 'Expiring soon'),
+                  iconWithStatus(Icons.check_circle_outline, 'Expiring soon'),
+                  iconWithStatus(Icons.check_circle_outline, 'Expiring soon'),
+                ],
+              ),
+              SizedBox(width: 10),
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: PieChart(PieChartData(sections: [
+                  PieChartSectionData(
+                    color: Colors.green,
+                    radius: 10,
+                  ),
+                  PieChartSectionData(
+                    color: Colors.red,
+                    radius: 10,
+                  ),
+                  PieChartSectionData(
+                    color: Colors.yellow,
+                    radius: 10,
+                  )
+                ])),
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }

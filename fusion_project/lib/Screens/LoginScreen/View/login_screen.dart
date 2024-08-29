@@ -121,7 +121,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DashboardScreen(),
+                                    ));
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         FAppTheme.defaultFusionColor,

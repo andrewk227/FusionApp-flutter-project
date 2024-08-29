@@ -9,139 +9,110 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  List<Widget> sections = [
-    SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(children: [
-        numberCard(),
-        numberCard(),
-        numberCard(),
-      ]),
-    ),
-    const SizedBox(
-      height: 20,
-    ),
-    SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(children: [
-        numberCard(),
-        numberCard(),
-        numberCard(),
-      ]),
-    ),
-    const SizedBox(
-      height: 20,
-    ),
-    SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(children: [
-        numberCard2(),
-        numberCard2(),
-        numberCard2(),
-      ]),
-    ),
-    const SizedBox(
-      height: 20,
-    ),
-    SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          numberCard(),
-          numberCard(),
-          numberCard(),
-        ])),
-  ];
+  // List<Widget> sections = [
+  //   SingleChildScrollView(
+  //     scrollDirection: Axis.horizontal,
+  //     child: Row(children: [
+  //       numberCard(),
+  //       numberCard(),
+  //       numberCard(),
+  //     ]),
+  //   ),
+  //   const SizedBox(
+  //     height: 20,
+  //   ),
+  //   SingleChildScrollView(
+  //     scrollDirection: Axis.horizontal,
+  //     child: Row(children: [
+  //       licenceCard(),
+  //       licenceCard(),
+  //       licenceCard(),
+  //     ]),
+  //   ),
+  //   const SizedBox(
+  //     height: 20,
+  //   ),
+  //   SingleChildScrollView(
+  //     scrollDirection: Axis.horizontal,
+  //     child: Row(children: []),
+  //   ),
+  //   const SizedBox(
+  //     height: 20,
+  //   ),
+  //   SingleChildScrollView(
+  //       scrollDirection: Axis.horizontal, child: Row(children: [])),
+  // ];
   final DashboardController _dashBoardController = DashboardController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body:
-            // ReorderableListView(
-            //     children: [
-            //       for (final tile in sections)
-            //         ListTile(
-            //           key: ValueKey(tile),
-            //           title: tile,
-            //         ),
-            //     ],
-            //     onReorder: (dragIndex, dropIndex) {
-            //       setState(() {
-            //         if (!_dashBoardController.getEditStatus()) {
-            //           return;
-            //         }
-
-            //         if (dragIndex < dropIndex) {
-            //           dropIndex--;
-            //         }
-
-            //         final tile = sections.removeAt(dragIndex);
-
-            //         sections.insert(dropIndex, tile);
-            //       });
-            //     }),
-            Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Column(children: [
-                Row(
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(50.0),
+            child: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              title: Column(
+                children: [
+                  Text(
+                    "Good Evening",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text("John Doe",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                ],
+              ),
+              leading: Padding(
+                padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
+                child: Stack(
                   children: [
-                    Stack(
-                      children: [
-                        CircleAvatar(
-                          foregroundImage: AssetImage('assets/images/user.png'),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 8,
-                            child: Icon(
+                    CircleAvatar(
+                      foregroundImage: AssetImage('assets/images/user.png'),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 14,
+                          child: IconButton(
+                            icon: Icon(
                               Icons.settings_outlined,
                               color: Colors.black,
-                              size: 12,
+                              size: 14,
                             ),
-                          ),
-                        ),
-                      ],
+                            onPressed: null,
+                          )),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      children: [
-                        Text("Good Evening"),
-                        Text("John Doe",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Spacer(),
-                    CircleAvatar(
-                      radius: 10,
-                      backgroundImage: AssetImage('assets/images/user.png'),
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Icon(
-                      Icons.notifications,
-                      color: FAppTheme.defaultFusionColor,
-                      size: 25,
-                    )
                   ],
                 ),
-              ]),
-            ),
+              ),
+              actions: [
+                CircleAvatar(
+                  radius: 10,
+                  backgroundImage: AssetImage('assets/images/user.png'),
+                ),
+                SizedBox(
+                  width: 2,
+                ),
+                Icon(
+                  Icons.notifications,
+                  color: FAppTheme.defaultFusionColor,
+                  size: 25,
+                )
+              ],
+            )),
+        body: Column(
+          children: [
             SingleChildScrollView(
               child: SizedBox(
                 height: MediaQuery.of(context).size.height / 1.3,
                 child: ReorderableListView(
                     shrinkWrap: true,
                     children: [
-                      for (final tile in sections)
+                      for (final tile in _dashBoardController.sections)
                         ListTile(
                           key: ValueKey(tile),
                           title: tile,
@@ -157,9 +128,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           dropIndex--;
                         }
 
-                        final tile = sections.removeAt(dragIndex);
+                        final tile =
+                            _dashBoardController.sections.removeAt(dragIndex);
 
-                        sections.insert(dropIndex, tile);
+                        _dashBoardController.sections.insert(dropIndex, tile);
                       });
                     }),
               ),
@@ -171,6 +143,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 TextButton(
                     onPressed: () {
                       _dashBoardController.toogleEditStatus();
+                      if (_dashBoardController.getEditStatus()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Edit Mode"),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("View Mode"),
+                          ),
+                        );
+                      }
                     },
                     child: const Text(
                       "Customizing your dashboard",
@@ -181,6 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.white,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                   icon: Icon(
