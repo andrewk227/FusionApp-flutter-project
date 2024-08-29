@@ -30,13 +30,18 @@ class DashboardController {
     ),
     SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(children: []),
+      child: Row(children: [
+        expiredCard(),
+      ]),
     ),
     const SizedBox(
       height: 20,
     ),
     SingleChildScrollView(
-        scrollDirection: Axis.horizontal, child: Row(children: [])),
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          serviceCard(),
+        ])),
   ];
 
   int getSelectedIndex() {

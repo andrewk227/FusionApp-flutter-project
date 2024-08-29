@@ -18,6 +18,6 @@ class MyApp extends StatelessWidget {
               ColorScheme.fromSeed(seedColor: FAppTheme.defaultFusionColor),
           useMaterial3: true,
         ),
-        home: const DashboardScreen());
+        home: const SplashScreen());
   }
 }

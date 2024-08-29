@@ -49,11 +49,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50.0),
+            preferredSize: const Size.fromHeight(50.0),
             child: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
-              title: Column(
+              title: const Column(
                 children: [
                   Text(
                     "Good Evening",
@@ -64,8 +64,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                 ],
               ),
-              leading: Padding(
-                padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
+              leading: const Padding(
+                padding: EdgeInsets.fromLTRB(4, 4, 0, 0),
                 child: Stack(
                   children: [
                     CircleAvatar(
@@ -90,14 +90,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
               actions: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 10,
                   backgroundImage: AssetImage('assets/images/user.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
-                Icon(
+                const Icon(
                   Icons.notifications,
                   color: FAppTheme.defaultFusionColor,
                   size: 25,
